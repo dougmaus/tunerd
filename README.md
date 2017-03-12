@@ -38,17 +38,17 @@ program installation
 - get source code archive
 
 - create directory /var/tunerd/
-mkdir /var/tunerd
+`mkdir /var/tunerd`
 
 - configure/customize for your location:
 edit a desired list of presets
 frequency is in kHz, so 95.7 MHz is stored as 95700, one number per line
-vi presets.txt
+`vi presets.txt`
 copy your configured presets.txt to directory
-cp presets.txt /var/tunerd
+`cp presets.txt /var/tunerd`
 
 - copy root.html to directory
-cp root.html /var/tunerd
+`cp root.html /var/tunerd`
 
 
 customize source if you want:
@@ -58,16 +58,16 @@ default listen both IPv4 and IPv6 - can edit main.c, function init()
 
 
 - make executable
-make
+`make`
 
 - move executable to directory
-mv tunerd /usr/local/sbin/
+`mv tunerd /usr/local/sbin/`
 
 - configure friendly to rc system
-cp etc.rd_tunerd /etc/rc.d/tunerd
+`cp etc.rd_tunerd /etc/rc.d/tunerd`
 
 - manually start
-/etc/rc.d/tunerd start
+`/etc/rc.d/tunerd start`
 
 Check log for errors
 Log is at /var/tunerd/tunerd.log
@@ -80,17 +80,17 @@ e.g. http://192.168.1.128/
 Troubleshooting
 Radio tuner card and OpenBSD radio/mixer troubleshooting
 
-radioctl
+`radioctl`
 (displays current radio settings)
 
 make sure radio is not muted
 if 'mute=on'
 change mute setting by:
-radioctl mute=off
+`radioctl mute=off`
 
 set a radio frequency to one known to provide good signal at your location
 change frequency by, for example:
-radioctl frequency=95.7
+`radioctl frequency=95.7`
 
 
 
