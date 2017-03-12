@@ -58,16 +58,16 @@ default listen both IPv4 and IPv6 - can edit main.c, function init()
 
 
 - make executable
- # make
+make
 
 - move executable to directory
- # mv tunerd /usr/local/sbin/
+mv tunerd /usr/local/sbin/
 
 - configure friendly to rc system
- # cp etc.rd_tunerd /etc/rc.d/tunerd
+cp etc.rd_tunerd /etc/rc.d/tunerd
 
 - manually start
- # /etc/rc.d/tunerd start
+/etc/rc.d/tunerd start
 
 Check log for errors
 Log is at /var/tunerd/tunerd.log
@@ -80,14 +80,17 @@ e.g. http://192.168.1.128/
 Troubleshooting
 Radio tuner card and OpenBSD radio/mixer troubleshooting
 
-# radioctl
+radioctl
+(displays current radio settings)
 
 make sure radio is not muted
 if 'mute=on'
-# radioctl mute=off
+change mute setting by:
+radioctl mute=off
 
 set a radio frequency to one known to provide good signal at your location
-# radioctl frequency=95.7
+change frequency by, for example:
+radioctl frequency=95.7
 
 
 
