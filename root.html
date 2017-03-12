@@ -1,0 +1,302 @@
+<!DOCTYPE html>
+<!-- Copyright (c) 2017 Douglas Maus -->
+<html>
+<head>
+<title>Music: FM Radio</title>
+
+<script>
+
+function sseRegister() {
+  if(typeof(EventSource) == 'undefined') {
+  } else {
+    var sse_source = new EventSource('/radio_freq');
+    sse_source.onmessage = function(event) {
+      updateFreq(event.data);
+    };
+  }
+}
+
+function presetNext() {
+  var xhreq = new XMLHttpRequest();
+  xhreq.open('POST', '/radio_preset', true);
+  xhreq.setRequestHeader('Content-type', 'application/x-www-form-urlencoded');
+  xhreq.onreadystatechange = function() {
+    if (xhreq.readyState == 4 && xhreq.Status == 200) {
+      alert(xhreq.responseText);
+    }
+  }
+  xhreq.send('preset=next');
+  return false;
+}
+
+function updateFreq(freqStr) {
+  var xlinkNS = 'http://www.w3.org/1999/xlink';
+
+  if (freqStr.length == 5) {
+    freqStr = ' ' + freqStr;
+  }
+
+  dig_hundred = document.getElementById('pos1');
+  dig_tens    = document.getElementById('pos2');
+  dig_ones    = document.getElementById('pos3');
+  dig_tenth   = document.getElementById('pos4');
+
+  dig_hundred.setAttributeNS(xlinkNS, 'href', '#'+freqStr.charAt(0) );
+  dig_tens.setAttributeNS(xlinkNS, 'href', '#'+freqStr.charAt(1) );
+  dig_ones.setAttributeNS(xlinkNS, 'href', '#'+freqStr.charAt(2) );
+  dig_tenth.setAttributeNS(xlinkNS, 'href', '#'+freqStr.charAt(3) );
+
+}
+
+</script>
+</head>
+
+<body onload="sseRegister();">
+
+<div style="width: 100%; max-width: 48em; margin: 0 auto;">
+<svg width="100%" viewBox="0 0 384 68">
+<defs>
+<symbol id="0" viewBox="0 0 80 128">
+<rect x="18" y="2"  width="12" height="12" />
+<rect x="34" y="2"  width="12" height="12" />
+<rect x="50" y="2"  width="12" height="12" />
+<rect x="2"  y="18" width="12" height="12" />
+<rect x="66" y="18" width="12" height="12" />
+<rect x="2"  y="34" width="12" height="12" />
+<rect x="50" y="34" width="12" height="12" />
+<rect x="66" y="34" width="12" height="12" />
+<rect x="2"  y="50" width="12" height="12" />
+<rect x="34" y="50" width="12" height="12" />
+<rect x="66" y="50" width="12" height="12" />
+<rect x="2"  y="66" width="12" height="12" />
+<rect x="18" y="66" width="12" height="12" />
+<rect x="66" y="66" width="12" height="12" />
+<rect x="2"  y="82" width="12" height="12" />
+<rect x="66" y="82" width="12" height="12" />
+<rect x="18" y="98" width="12" height="12" />
+<rect x="34" y="98" width="12" height="12" />
+<rect x="50" y="98" width="12" height="12" />
+</symbol>
+<symbol id="1" viewBox="0 0 80 128">
+<rect x="34" y="2"  width="12" height="12" />
+<rect x="18" y="18" width="12" height="12" />
+<rect x="34" y="18" width="12" height="12" />
+<rect x="34" y="34" width="12" height="12" />
+<rect x="34" y="50" width="12" height="12" />
+<rect x="34" y="66" width="12" height="12" />
+<rect x="34" y="82" width="12" height="12" />
+<rect x="18" y="98" width="12" height="12" />
+<rect x="34" y="98" width="12" height="12" />
+<rect x="50" y="98" width="12" height="12" />
+</symbol>
+<symbol id="2" viewBox="0 0 80 128">
+<rect x="18" y="2"  width="12" height="12" />
+<rect x="34" y="2"  width="12" height="12" />
+<rect x="50" y="2"  width="12" height="12" />
+<rect x="2"  y="18" width="12" height="12" />
+<rect x="66" y="18" width="12" height="12" />
+<rect x="66" y="34" width="12" height="12" />
+<rect x="50" y="50" width="12" height="12" />
+<rect x="34" y="66" width="12" height="12" />
+<rect x="16" y="82" width="12" height="12" />
+<rect x="2"  y="98" width="12" height="12" />
+<rect x="18" y="98" width="12" height="12" />
+<rect x="34" y="98" width="12" height="12" />
+<rect x="50" y="98" width="12" height="12" />
+<rect x="66" y="98" width="12" height="12" />
+</symbol>
+<symbol id="3" viewBox="0 0 80 128">
+<rect x="2"  y="2"  width="12" height="12" />
+<rect x="18" y="2"  width="12" height="12" />
+<rect x="34" y="2"  width="12" height="12" />
+<rect x="50" y="2"  width="12" height="12" />
+<rect x="66" y="2"  width="12" height="12" />
+<rect x="50" y="18" width="12" height="12" />
+<rect x="34" y="34" width="12" height="12" />
+<rect x="50" y="50" width="12" height="12" />
+<rect x="66" y="66" width="12" height="12" />
+<rect x="2"  y="82" width="12" height="12" />
+<rect x="66" y="82" width="12" height="12" />
+<rect x="18" y="98" width="12" height="12" />
+<rect x="34" y="98" width="12" height="12" />
+<rect x="50" y="98" width="12" height="12" />
+</symbol>
+<symbol id="4" viewBox="0 0 80 128">
+<rect x="50" y="2"  width="12" height="12" />
+<rect x="34" y="18" width="12" height="12" />
+<rect x="50" y="18" width="12" height="12" />
+<rect x="18" y="34" width="12" height="12" />
+<rect x="50" y="34" width="12" height="12" />
+<rect x="2"  y="50" width="12" height="12" />
+<rect x="50" y="50" width="12" height="12" />
+<rect x="2"  y="66" width="12" height="12" />
+<rect x="18" y="66" width="12" height="12" />
+<rect x="34" y="66" width="12" height="12" />
+<rect x="50" y="66" width="12" height="12" />
+<rect x="66" y="66" width="12" height="12" />
+<rect x="50" y="82" width="12" height="12" />
+<rect x="50" y="98" width="12" height="12" />
+</symbol>
+<symbol id="5" viewBox="0 0 80 128">
+<rect x="2"  y="2"  width="12" height="12" />
+<rect x="18" y="2"  width="12" height="12" />
+<rect x="34" y="2"  width="12" height="12" />
+<rect x="50" y="2"  width="12" height="12" />
+<rect x="66" y="2"  width="12" height="12" />
+<rect x="2"  y="18" width="12" height="12" />
+<rect x="2"  y="34" width="12" height="12" />
+<rect x="18" y="34" width="12" height="12" />
+<rect x="34" y="34" width="12" height="12" />
+<rect x="50" y="34" width="12" height="12" />
+<rect x="66" y="50" width="12" height="12" />
+<rect x="66" y="66" width="12" height="12" />
+<rect x="2"  y="82" width="12" height="12" />
+<rect x="66" y="82" width="12" height="12" />
+<rect x="18" y="98" width="12" height="12" />
+<rect x="34" y="98" width="12" height="12" />
+<rect x="50" y="98" width="12" height="12" />
+</symbol>
+<symbol id="6" viewBox="0 0 80 128">
+<rect x="34" y="2"  width="12" height="12" />
+<rect x="50" y="2"  width="12" height="12" />
+<rect x="18" y="18" width="12" height="12" />
+<rect x="2"  y="34" width="12" height="12" />
+<rect x="2"  y="50" width="12" height="12" />
+<rect x="18" y="50" width="12" height="12" />
+<rect x="34" y="50" width="12" height="12" />
+<rect x="50" y="50" width="12" height="12" />
+<rect x="2"  y="66" width="12" height="12" />
+<rect x="66" y="66" width="12" height="12" />
+<rect x="2"  y="82" width="12" height="12" />
+<rect x="66" y="82" width="12" height="12" />
+<rect x="18" y="98" width="12" height="12" />
+<rect x="34" y="98" width="12" height="12" />
+<rect x="50" y="98" width="12" height="12" />
+</symbol>
+<symbol id="7" viewBox="0 0 80 128">
+<rect x="2"  y="2"  width="12" height="12" />
+<rect x="18" y="2"  width="12" height="12" />
+<rect x="34" y="2"  width="12" height="12" />
+<rect x="50" y="2"  width="12" height="12" />
+<rect x="66" y="2"  width="12" height="12" />
+<rect x="2"  y="18" width="12" height="12" />
+<rect x="66" y="18" width="12" height="12" />
+<rect x="66" y="34" width="12" height="12" />
+<rect x="50" y="50" width="12" height="12" />
+<rect x="34" y="66" width="12" height="12" />
+<rect x="34" y="82" width="12" height="12" />
+<rect x="34" y="98" width="12" height="12" />
+</symbol>
+<symbol id="8" viewBox="0 0 80 128">
+<rect x="18" y="2"  width="12" height="12" />
+<rect x="34" y="2"  width="12" height="12" />
+<rect x="50" y="2"  width="12" height="12" />
+<rect x="2"  y="18" width="12" height="12" />
+<rect x="66" y="18" width="12" height="12" />
+<rect x="2"  y="34" width="12" height="12" />
+<rect x="66" y="34" width="12" height="12" />
+<rect x="18" y="50" width="12" height="12" />
+<rect x="34" y="50" width="12" height="12" />
+<rect x="50" y="50" width="12" height="12" />
+<rect x="2"  y="66" width="12" height="12" />
+<rect x="66" y="66" width="12" height="12" />
+<rect x="2"  y="82" width="12" height="12" />
+<rect x="66" y="82" width="12" height="12" />
+<rect x="18" y="98" width="12" height="12" />
+<rect x="34" y="98" width="12" height="12" />
+<rect x="50" y="98" width="12" height="12" />
+</symbol>
+<symbol id="9" viewBox="0 0 80 128">
+<rect x="18" y="2"  width="12" height="12" />
+<rect x="34" y="2"  width="12" height="12" />
+<rect x="50" y="2"  width="12" height="12" />
+<rect x="2"  y="18" width="12" height="12" />
+<rect x="66" y="18" width="12" height="12" />
+<rect x="2"  y="34" width="12" height="12" />
+<rect x="66" y="34" width="12" height="12" />
+<rect x="18" y="50" width="12" height="12" />
+<rect x="34" y="50" width="12" height="12" />
+<rect x="50" y="50" width="12" height="12" />
+<rect x="66" y="66" width="12" height="12" />
+<rect x="50" y="82" width="12" height="12" />
+<rect x="18" y="98" width="12" height="12" />
+<rect x="34" y="98" width="12" height="12" />
+</symbol>
+<symbol id="dp" viewBox="0 0 80 128">
+<rect x="18" y="82" width="12" height="12" />
+<rect x="34" y="82" width="12" height="12" />
+<rect x="18" y="98" width="12" height="12" />
+<rect x="34" y="98" width="12" height="12" />
+</symbol>
+<symbol id="M" viewBox="0 0 80 128">
+<rect x="2"  y="2"  width="12" height="12" />
+<rect x="66" y="2"  width="12" height="12" />
+<rect x="2"  y="18" width="12" height="12" />
+<rect x="18" y="18" width="12" height="12" />
+<rect x="50" y="18" width="12" height="12" />
+<rect x="66" y="18" width="12" height="12" />
+<rect x="2"  y="34" width="12" height="12" />
+<rect x="34" y="34" width="12" height="12" />
+<rect x="66" y="34" width="12" height="12" />
+<rect x="2"  y="50" width="12" height="12" />
+<rect x="34" y="50" width="12" height="12" />
+<rect x="66" y="50" width="12" height="12" />
+<rect x="2"  y="66" width="12" height="12" />
+<rect x="66" y="66" width="12" height="12" />
+<rect x="2"  y="82" width="12" height="12" />
+<rect x="66" y="82" width="12" height="12" />
+<rect x="2"  y="98" width="12" height="12" />
+<rect x="66" y="98" width="12" height="12" />
+</symbol>
+<symbol id="H" viewBox="0 0 80 128">
+<rect x="2"  y="2"  width="12" height="12" />
+<rect x="66" y="2"  width="12" height="12" />
+<rect x="2"  y="18" width="12" height="12" />
+<rect x="66" y="18" width="12" height="12" />
+<rect x="2"  y="34" width="12" height="12" />
+<rect x="66" y="34" width="12" height="12" />
+<rect x="2"  y="50" width="12" height="12" />
+<rect x="18" y="50" width="12" height="12" />
+<rect x="34" y="50" width="12" height="12" />
+<rect x="50" y="50" width="12" height="12" />
+<rect x="66" y="50" width="12" height="12" />
+<rect x="2"  y="66" width="12" height="12" />
+<rect x="66" y="66" width="12" height="12" />
+<rect x="2"  y="82" width="12" height="12" />
+<rect x="66" y="82" width="12" height="12" />
+<rect x="2"  y="98" width="12" height="12" />
+<rect x="66" y="98" width="12" height="12" />
+</symbol>
+<symbol id="z" viewBox="0 0 80 128">
+<rect x="2"  y="34" width="12" height="12" />
+<rect x="18" y="34" width="12" height="12" />
+<rect x="34" y="34" width="12" height="12" />
+<rect x="50" y="34" width="12" height="12" />
+<rect x="66" y="34" width="12" height="12" />
+<rect x="50" y="50" width="12" height="12" />
+<rect x="34" y="66" width="12" height="12" />
+<rect x="18" y="82" width="12" height="12" />
+<rect x="2"  y="98" width="12" height="12" />
+<rect x="18" y="98" width="12" height="12" />
+<rect x="34" y="98" width="12" height="12" />
+<rect x="50" y="98" width="12" height="12" />
+<rect x="66" y="98" width="12" height="12" />
+</symbol>
+</defs>
+
+<rect x="0" y="0" width="384" height="68" style="fill: #000000" />
+<use id="pos1" xlink:href="#1" x="0" y="4" width="40" height="64" style="fill: #FFFFFF" />
+<use id="pos2" xlink:href="#0" x="48" y="4" width="40" height="64" style="fill: #FFFFFF" />
+<use id="pos3" xlink:href="#7" x="96" y="4" width="40" height="64" style="fill: #FFFFFF" />
+<use xlink:href="#dp" x="144" y="4" width="40" height="64" style="fill: #FFFFFF" />
+<use id="pos4" xlink:href="#9" x="192" y="4" width="40" height="64" style="fill: #FFFFFF" />
+<use xlink:href="#M" x="240" y="4" width="40" height="64" style="fill: #FFFFFF" />
+<use xlink:href="#H" x="288" y="4" width="40" height="64" style="fill: #FFFFFF" />
+<use xlink:href="#z" x="336" y="4" width="40" height="64" style="fill: #FFFFFF" />
+</svg>
+</div>
+
+<div onclick="presetNext();" style="border-style: solid; width: 4em; margin: 0 auto; display: flex; align-items: center; justify-content: center; cursor: pointer; font-family: 'Gill Sans', sans-serif; font-size: 4em;" >NEXT</div>
+
+</body>
+</html>
