@@ -43,12 +43,12 @@ program installation
 - configure/customize for your location:
 edit a desired list of presets
 frequency is in kHz, so 95.7 MHz is stored as 95700, one number per line
- # vi presets.txt
+vi presets.txt
 copy your configured presets.txt to directory
- # cp presets.txt /var/tunerd
+cp presets.txt /var/tunerd
 
 - copy root.html to directory
- # cp root.html /var/tunerd
+cp root.html /var/tunerd
 
 
 customize source if you want:
