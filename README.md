@@ -38,7 +38,7 @@ program installation
 - get source code archive
 
 - create directory /var/tunerd/
- # mkdir /var/tunerd
+mkdir /var/tunerd
 
 - configure/customize for your location:
 edit a desired list of presets
